@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="prodi_arrays">
+        <item>Pilih Prodi</item>
+        <item>Teknik Informatika</item>
+        <item>Teknik Mesin</item>
+        <item>Teknik Sipil</item>
+        <item>Teknik Elektro</item>
+        <item>Sastra Jepang</item>
+        <item>Sastra Inggris</item>
+    </string-array>
+
+    <string-array name="agama_arrays">
+        <item>Pilih Agama</item>
+        <item>Islam</item>
+        <item>Kristen Protestan</item>
+        <item>Budha</item>
+        <item>Hindu</item>
+        <item>Kong Hu Cu</item>
+        <item>Katholik</item>
+    </string-array>
+</resources>
