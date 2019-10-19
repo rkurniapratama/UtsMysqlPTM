@@ -4,7 +4,8 @@
     <color name="colorPrimaryDark">#007ebc</color>
     <color name="colorAccent">#00ADEF</color>
 
-    <color name="menu_background">#DDDFE9</color>
+<!--    <color name="menu_background">#DDDFE9</color>-->
+    <color name="menu_background">#FFF</color>
     <color name="spiner_base_color">#00ADEF</color>
     <color name="menu_label">#737373</color>
 </resources>

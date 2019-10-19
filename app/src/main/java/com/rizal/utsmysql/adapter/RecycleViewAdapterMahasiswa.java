@@ -135,7 +135,7 @@ public class RecycleViewAdapterMahasiswa extends RecyclerView.Adapter<RecycleVie
         });
 
         if (position + 1 == getItemCount()) {
-            setBottomMargin(holder.itemView, (int) (88 * Resources.getSystem().getDisplayMetrics().density));
+            setBottomMargin(holder.itemView, (int) (85 * Resources.getSystem().getDisplayMetrics().density));
         } else {
             setBottomMargin(holder.itemView, 0);
         }
