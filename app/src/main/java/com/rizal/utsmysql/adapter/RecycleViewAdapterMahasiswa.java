@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.rizal.utsmysql.R;
 import com.rizal.utsmysql.activity.AddMahasiswaActivity;
+import com.rizal.utsmysql.activity.DetailMahasiswaActivity;
 import com.rizal.utsmysql.api.BaseApiService;
 import com.rizal.utsmysql.api.UtilsApi;
 import com.rizal.utsmysql.helper.CommonView;
@@ -91,14 +92,18 @@ public class RecycleViewAdapterMahasiswa extends RecyclerView.Adapter<RecycleVie
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()) {
                             case R.id.menuDetail:
-                                //handle menu1 click
+                                Intent intentDetail = new Intent(mContext, DetailMahasiswaActivity.class);
+                                Bundle bDetail = new Bundle();
+                                bDetail.putString("nbi", dataMahasiswa.get(position).getNbi());
+                                intentDetail.putExtras(bDetail);
+                                mContext.startActivity(intentDetail);
                                 break;
                             case R.id.menuEdit:
-                                Intent intent = new Intent(mContext, AddMahasiswaActivity.class);
-                                Bundle b = new Bundle();
-                                b.putString("nbi", dataMahasiswa.get(position).getNbi());
-                                intent.putExtras(b);
-                                mContext.startActivity(intent);
+                                Intent intentMain = new Intent(mContext, AddMahasiswaActivity.class);
+                                Bundle bMain = new Bundle();
+                                bMain.putString("nbi", dataMahasiswa.get(position).getNbi());
+                                intentMain.putExtras(bMain);
+                                mContext.startActivity(intentMain);
                                 break;
                             case R.id.menuHapus:
                                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(mContext);
