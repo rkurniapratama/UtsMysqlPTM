@@ -16,69 +16,85 @@
         android:id="@+id/cvListUser"
         android:layout_margin="3dp">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:padding="10dp">
 
-            <ImageView
-                android:layout_gravity="center"
-                android:id="@+id/ivTextDrawable"
-                android:layout_width="70dp"
-                android:layout_height="70dp"/>
-
             <LinearLayout
-                android:layout_marginStart="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_weight="1">
+                android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/tvLabelNbi"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/spiner_base_color"
-                    android:textStyle="bold"
-                    android:textSize="16sp"
-                    android:fontFamily="@font/lato_medium"
-                    tools:text="NBI"
-                    android:singleLine="false" />
+                <ImageView
+                    android:layout_gravity="center"
+                    android:id="@+id/ivTextDrawable"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"/>
 
-                <TextView
-                    android:id="@+id/tvNbi"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_marginStart="15dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/menu_label"
-                    android:textStyle="bold"
-                    android:textSize="16sp"
-                    android:fontFamily="@font/lato_medium"
-                    tools:text="-"
-                    android:singleLine="false" />
+                    android:orientation="vertical"
+                    android:layout_weight="1">
 
-                <TextView
-                    android:id="@+id/tvLabelNama"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/spiner_base_color"
-                    android:textStyle="bold"
-                    android:textSize="16sp"
-                    android:fontFamily="@font/lato_medium"
-                    tools:text="Nama"
-                    android:singleLine="false" />
+                    <TextView
+                        android:id="@+id/tvLabelNbi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/spiner_base_color"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/lato_medium"
+                        tools:text="NBI"
+                        android:singleLine="false" />
 
-                <TextView
-                    android:id="@+id/tvNama"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/menu_label"
-                    android:textStyle="bold"
-                    android:textSize="16sp"
-                    android:fontFamily="@font/lato_medium"
-                    tools:text="-"
-                    android:singleLine="false" />
+                    <TextView
+                        android:id="@+id/tvNbi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/menu_label"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/lato_medium"
+                        tools:text="-"
+                        android:singleLine="false" />
+
+                    <TextView
+                        android:id="@+id/tvLabelNama"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/spiner_base_color"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/lato_medium"
+                        tools:text="Nama"
+                        android:singleLine="false" />
+
+                    <TextView
+                        android:id="@+id/tvNama"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/menu_label"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/lato_medium"
+                        tools:text="-"
+                        android:singleLine="false" />
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvOptions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="&#8942;"
+                android:textAppearance="?android:textAppearanceLarge" />
+        </RelativeLayout>
     </androidx.cardview.widget.CardView>
 </LinearLayout>

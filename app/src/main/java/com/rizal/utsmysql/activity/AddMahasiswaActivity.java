@@ -164,7 +164,7 @@ public class AddMahasiswaActivity extends AppCompatActivity {
     }
 
     private void sendUpdateMahasiswa(MahasiswaRequestModel param) {
-        if(UtilsApi.isNetworkAvailable(mContext)) {
+//        if(UtilsApi.isNetworkAvailable(mContext)) {
             commonView.startProgressBarNonCancelable("Mohon tunggu...");
             mApiService.sendUpdateMahasiswa(param)
                     .enqueue(new Callback<MahasiswaResponseModel>() {
@@ -186,14 +186,14 @@ public class AddMahasiswaActivity extends AppCompatActivity {
                             commonView.popUp(t.getMessage());
                         }
                     });
-        }
-        else {
-            commonView.popUp("Mohon cek koneksi internet anda");
-        }
+//        }
+//        else {
+//            commonView.popUp("Mohon cek koneksi internet anda");
+//        }
     }
 
     private void sendGetDetailMahasiswa(MahasiswaRequestModel param) {
-        if(UtilsApi.isNetworkAvailable(mContext)) {
+//        if(UtilsApi.isNetworkAvailable(mContext)) {
             commonView.startProgressBarNonCancelable("Mohon tunggu...");
             mApiService.sendGetDetailMahasiswa(param)
                     .enqueue(new Callback<MahasiswaResponseModel>() {
@@ -236,10 +236,10 @@ public class AddMahasiswaActivity extends AppCompatActivity {
                         }
                     });
 
-        }
-        else {
-            commonView.popUp("Mohon cek koneksi internet anda");
-        }
+//        }
+//        else {
+//            commonView.popUp("Mohon cek koneksi internet anda");
+//        }
     }
 
     private void resetForm() {
