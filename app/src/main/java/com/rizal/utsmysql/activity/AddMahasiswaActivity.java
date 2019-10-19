@@ -3,6 +3,7 @@ package com.rizal.utsmysql.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -121,6 +122,15 @@ public class AddMahasiswaActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(mContext, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
+    }
+
     private void initStartActivity() {
         Bundle b = getIntent().getExtras();
 
@@ -172,8 +182,11 @@ public class AddMahasiswaActivity extends AppCompatActivity {
                         public void onResponse(Call<MahasiswaResponseModel> call, Response<MahasiswaResponseModel> response) {
                             commonView.stopProgressBar();
                             if(response.isSuccessful()) {
-                                commonView.popUp(response.body().getMessage());
-                                resetForm();
+//                                commonView.popUp(response.body().getMessage());
+                                Intent intent = new Intent(mContext, MainActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(intent);
+                                finish();
                             }
                             else {
                                 commonView.popUp(response.message());
@@ -202,6 +215,7 @@ public class AddMahasiswaActivity extends AppCompatActivity {
                             commonView.stopProgressBar();
                             if(response.isSuccessful()) {
                                 if(response.body().getStatus().equalsIgnoreCase("S")) {
+                                    resetForm();
                                     etNbi.setText(response.body().getData().getNbi());
                                     etNama.setText(response.body().getData().getNama());
                                     etAlamat.setText(response.body().getData().getAlamat());
@@ -222,7 +236,9 @@ public class AddMahasiswaActivity extends AppCompatActivity {
                                         else if(item.equals("Bermain Game")) cbBermainGame.setChecked(true);
                                     }
                                 }
-                                commonView.popUp(response.body().getMessage());
+                                else {
+                                    commonView.popUp(response.body().getMessage());
+                                }
                             }
                             else {
                                 commonView.popUp(response.message());

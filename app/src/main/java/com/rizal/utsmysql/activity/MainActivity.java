@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -56,25 +57,6 @@ public class MainActivity extends AppCompatActivity {
         rvListMahasiswa.setLayoutManager(mLayoutManager);
         rvListMahasiswa.setAdapter(rvListMahasiswaAdapter);
         fabTambah = (FloatingActionButton) findViewById(R.id.fabTambah);
-
-        rvListMahasiswa.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                if (dy >0) {
-                    // Scroll Down
-                    if (fabTambah.isShown()) {
-                        fabTambah.hide();
-                    }
-                }
-                else if (dy <0) {
-                    // Scroll Up
-                    if (!fabTambah.isShown()) {
-                        fabTambah.show();
-                    }
-                }
-            }
-        });
 
         fabTambah.setOnClickListener(new View.OnClickListener() {
             @Override

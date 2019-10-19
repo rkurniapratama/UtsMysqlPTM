@@ -3,6 +3,7 @@ package com.rizal.utsmysql.adapter;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -127,6 +128,12 @@ public class RecycleViewAdapterMahasiswa extends RecyclerView.Adapter<RecycleVie
                 popup.show();
             }
         });
+
+        if (position + 1 == getItemCount()) {
+            setBottomMargin(holder.itemView, (int) (88 * Resources.getSystem().getDisplayMetrics().density));
+        } else {
+            setBottomMargin(holder.itemView, 0);
+        }
     }
 
     @Override
@@ -174,7 +181,7 @@ public class RecycleViewAdapterMahasiswa extends RecyclerView.Adapter<RecycleVie
                     public void onResponse(Call<MahasiswaResponseModel> call, Response<MahasiswaResponseModel> response) {
                         commonView.stopProgressBar();
                         if(response.isSuccessful()) {
-                            dataMahasiswa.remove(dataMahasiswa.size() - 1);
+                            dataMahasiswa.remove(getItemCount() - 1);
                             commonView.popUp(response.body().getMessage());
                             notifyDataSetChanged();
                         }
@@ -189,5 +196,13 @@ public class RecycleViewAdapterMahasiswa extends RecyclerView.Adapter<RecycleVie
                         commonView.popUp(t.getMessage());
                     }
                 });
+    }
+
+    private static void setBottomMargin(View view, int bottomMargin) {
+        if (view.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
+            params.setMargins(params.leftMargin, params.topMargin, params.rightMargin, bottomMargin);
+            view.requestLayout();
+        }
     }
 }
