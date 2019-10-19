@@ -12,10 +12,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <FrameLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/spiner_base_color">
+            android:background="@color/spiner_base_color"
+            android:orientation="vertical">
 
             <androidx.cardview.widget.CardView
                 xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -30,40 +31,34 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
+                    android:orientation="horizontal"
                     android:padding="10dp">
 
-                    <LinearLayout
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:layout_weight="1">
 
-                        <com.google.android.material.textfield.TextInputLayout
+                        <EditText
+                            android:id="@+id/etCari"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1">
+                            android:inputType="text"
+                            android:hint="NBI/Nama"/>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                            <EditText
-                                android:id="@+id/etCari"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:inputType="text"
-                                android:hint="NBI/Nama"/>
-                        </com.google.android.material.textfield.TextInputLayout>
-
-
-                        <Button
-                            android:id="@+id/btnCari"
-                            android:layout_weight="4"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            app:backgroundTint="@color/spiner_base_color"
-                            android:textColor="#fff"
-                            android:text="Cari"/>
-                    </LinearLayout>
+                    <Button
+                        android:id="@+id/btnCari"
+                        android:layout_weight="3.5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:backgroundTint="@color/spiner_base_color"
+                        android:textColor="#fff"
+                        android:text="Cari"
+                        android:drawableLeft="@drawable/ic_search_white_24dp"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
-        </FrameLayout>
+        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
