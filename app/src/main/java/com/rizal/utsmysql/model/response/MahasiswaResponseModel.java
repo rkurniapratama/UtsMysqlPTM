@@ -6,124 +6,68 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class MahasiswaResponseModel {
-    @SerializedName("nbi")
+    @SerializedName("status")
     @Expose
-    private String nbi;
+    private String status;
 
-    @SerializedName("nama")
+    @SerializedName("message")
     @Expose
-    private String nama;
+    private String message;
 
-    @SerializedName("alamat")
+    @SerializedName("data")
     @Expose
-    private String alamat;
+    private MahasiswaModel data;
 
-    @SerializedName("tgl_lahir")
+    @SerializedName("data_list")
     @Expose
-    private String tgl_lahir;
+    private List<MahasiswaModel> data_list;
 
-    @SerializedName("prodi")
-    @Expose
-    private String prodi;
-
-    @SerializedName("kelamin")
-    @Expose
-    private String kelamin;
-
-    @SerializedName("agama")
-    @Expose
-    private String agama;
-
-    @SerializedName("hobi")
-    @Expose
-    private List<String> hobi;
-
-    public MahasiswaResponseModel(String nbi, String nama, String alamat, String tgl_lahir, String prodi, String kelamin, String agama, List<String> hobi) {
-        this.nbi = nbi;
-        this.nama = nama;
-        this.alamat = alamat;
-        this.tgl_lahir = tgl_lahir;
-        this.prodi = prodi;
-        this.kelamin = kelamin;
-        this.agama = agama;
-        this.hobi = hobi;
+    public MahasiswaResponseModel(String status, String message, MahasiswaModel data, List<MahasiswaModel> data_list) {
+        this.status = status;
+        this.message = message;
+        this.data = data;
+        this.data_list = data_list;
     }
 
-    public String getNbi() {
-        return nbi;
+    public String getStatus() {
+        return status;
     }
 
-    public void setNbi(String nbi) {
-        this.nbi = nbi;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
-    public String getNama() {
-        return nama;
+    public String getMessage() {
+        return message;
     }
 
-    public void setNama(String nama) {
-        this.nama = nama;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
-    public String getAlamat() {
-        return alamat;
+    public MahasiswaModel getData() {
+        return data;
     }
 
-    public void setAlamat(String alamat) {
-        this.alamat = alamat;
+    public void setData(MahasiswaModel data) {
+        this.data = data;
     }
 
-    public String getTgl_lahir() {
-        return tgl_lahir;
+    public List<MahasiswaModel> getData_list() {
+        return data_list;
     }
 
-    public void setTgl_lahir(String tgl_lahir) {
-        this.tgl_lahir = tgl_lahir;
-    }
-
-    public String getProdi() {
-        return prodi;
-    }
-
-    public void setProdi(String prodi) {
-        this.prodi = prodi;
-    }
-
-    public String getKelamin() {
-        return kelamin;
-    }
-
-    public void setKelamin(String kelamin) {
-        this.kelamin = kelamin;
-    }
-
-    public String getAgama() {
-        return agama;
-    }
-
-    public void setAgama(String agama) {
-        this.agama = agama;
-    }
-
-    public List<String> getHobi() {
-        return hobi;
-    }
-
-    public void setHobi(List<String> hobi) {
-        this.hobi = hobi;
+    public void setData_list(List<MahasiswaModel> data_list) {
+        this.data_list = data_list;
     }
 
     @Override
     public String toString() {
-        return "MahasiswaRequestModel{" +
-                "nbi='" + nbi + '\'' +
-                ", nama='" + nama + '\'' +
-                ", alamat='" + alamat + '\'' +
-                ", tgl_lahir='" + tgl_lahir + '\'' +
-                ", prodi='" + prodi + '\'' +
-                ", kelamin='" + kelamin + '\'' +
-                ", agama='" + agama + '\'' +
-                ", hobi=" + hobi +
+        return "MahasiswaResponseModel{" +
+                "status='" + status + '\'' +
+                ", message='" + message + '\'' +
+                ", data=" + data +
+                ", data_list=" + data_list +
                 '}';
     }
 }

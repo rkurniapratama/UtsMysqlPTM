@@ -18,8 +18,7 @@ import com.rizal.utsmysql.api.BaseApiService;
 import com.rizal.utsmysql.api.UtilsApi;
 import com.rizal.utsmysql.helper.CommonView;
 import com.rizal.utsmysql.model.request.MahasiswaRequestModel;
-import com.rizal.utsmysql.model.response.ReturnFirstMahasiswaResponseModel;
-import com.rizal.utsmysql.model.response.ReturnMahasiswaResponseModel;
+import com.rizal.utsmysql.model.response.MahasiswaResponseModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -97,11 +96,11 @@ public class AddMahasiswaActivity extends AppCompatActivity {
 
                     if(insertOrUpdate == 0) {
                         Log.d("check insert", param.toString());
-//                        sendInsertMahasiswa(param);
+                        sendInsertMahasiswa(param);
                     }
                     else {
                         Log.d("check update", param.toString());
-//                        sendUpdateMahasiswa(param);
+                        sendUpdateMahasiswa(param);
                     }
                 }
             }
@@ -114,7 +113,9 @@ public class AddMahasiswaActivity extends AppCompatActivity {
                     resetForm();
                 }
                 else {
-                    sendGetByNbiMahasiswa(etNbi.getText().toString());
+                    MahasiswaRequestModel param = new MahasiswaRequestModel();
+                    param.setNbi(etNbi.getText().toString());
+                    sendGetDetailMahasiswa(param);
                 }
             }
         });
@@ -127,17 +128,19 @@ public class AddMahasiswaActivity extends AppCompatActivity {
             insertOrUpdate = 1;
             btnSimpan.setText("Edit");
             commonView.enableDisableEditText(false, etNbi);
-            sendGetByNbiMahasiswa(b.getString("nbi"));
+            MahasiswaRequestModel param = new MahasiswaRequestModel();
+            param.setNbi(b.getString("nbi"));
+            sendGetDetailMahasiswa(param);
         }
     }
 
     private void sendInsertMahasiswa(MahasiswaRequestModel param) {
-        if(UtilsApi.isNetworkAvailable(mContext)) {
+//        if(UtilsApi.isNetworkAvailable(mContext)) {
             commonView.startProgressBarNonCancelable("Mohon tunggu...");
             mApiService.sendInsertMahasiswa(param)
-                    .enqueue(new Callback<ReturnMahasiswaResponseModel>() {
+                    .enqueue(new Callback<MahasiswaResponseModel>() {
                         @Override
-                        public void onResponse(Call<ReturnMahasiswaResponseModel> call, Response<ReturnMahasiswaResponseModel> response) {
+                        public void onResponse(Call<MahasiswaResponseModel> call, Response<MahasiswaResponseModel> response) {
                             commonView.stopProgressBar();
                             if(response.isSuccessful()) {
                                 commonView.popUp(response.body().getMessage());
@@ -149,24 +152,24 @@ public class AddMahasiswaActivity extends AppCompatActivity {
                         }
 
                         @Override
-                        public void onFailure(Call<ReturnMahasiswaResponseModel> call, Throwable t) {
+                        public void onFailure(Call<MahasiswaResponseModel> call, Throwable t) {
                             commonView.stopProgressBar();
                             commonView.popUp(t.getMessage());
                         }
                     });
-        }
-        else {
-            commonView.popUp("Mohon cek koneksi internet anda");
-        }
+//        }
+//        else {
+//            commonView.popUp("Mohon cek koneksi internet anda");
+//        }
     }
 
     private void sendUpdateMahasiswa(MahasiswaRequestModel param) {
         if(UtilsApi.isNetworkAvailable(mContext)) {
             commonView.startProgressBarNonCancelable("Mohon tunggu...");
             mApiService.sendUpdateMahasiswa(param)
-                    .enqueue(new Callback<ReturnMahasiswaResponseModel>() {
+                    .enqueue(new Callback<MahasiswaResponseModel>() {
                         @Override
-                        public void onResponse(Call<ReturnMahasiswaResponseModel> call, Response<ReturnMahasiswaResponseModel> response) {
+                        public void onResponse(Call<MahasiswaResponseModel> call, Response<MahasiswaResponseModel> response) {
                             commonView.stopProgressBar();
                             if(response.isSuccessful()) {
                                 commonView.popUp(response.body().getMessage());
@@ -178,7 +181,7 @@ public class AddMahasiswaActivity extends AppCompatActivity {
                         }
 
                         @Override
-                        public void onFailure(Call<ReturnMahasiswaResponseModel> call, Throwable t) {
+                        public void onFailure(Call<MahasiswaResponseModel> call, Throwable t) {
                             commonView.stopProgressBar();
                             commonView.popUp(t.getMessage());
                         }
@@ -189,13 +192,13 @@ public class AddMahasiswaActivity extends AppCompatActivity {
         }
     }
 
-    private void sendGetByNbiMahasiswa(String param) {
+    private void sendGetDetailMahasiswa(MahasiswaRequestModel param) {
         if(UtilsApi.isNetworkAvailable(mContext)) {
             commonView.startProgressBarNonCancelable("Mohon tunggu...");
-            mApiService.sendGetByNbiMahasiswa(param)
-                    .enqueue(new Callback<ReturnFirstMahasiswaResponseModel>() {
+            mApiService.sendGetDetailMahasiswa(param)
+                    .enqueue(new Callback<MahasiswaResponseModel>() {
                         @Override
-                        public void onResponse(Call<ReturnFirstMahasiswaResponseModel> call, Response<ReturnFirstMahasiswaResponseModel> response) {
+                        public void onResponse(Call<MahasiswaResponseModel> call, Response<MahasiswaResponseModel> response) {
                             commonView.stopProgressBar();
                             if(response.isSuccessful()) {
                                 if(response.body().getStatus().equalsIgnoreCase("S")) {
@@ -205,7 +208,7 @@ public class AddMahasiswaActivity extends AppCompatActivity {
                                     etTglLahir.setText(response.body().getData().getTgl_lahir());
                                     spProdi.setSelection(commonView.getIndexSpinner(spProdi, response.body().getData().getProdi()));
                                     spAgama.setSelection(commonView.getIndexSpinner(spAgama, response.body().getData().getAgama()));
-                                    if(response.body().getData().getKelamin().equalsIgnoreCase("Laki-Laki")) {
+                                    if(response.body().getData().getJns_kelamin().equalsIgnoreCase("Laki-Laki")) {
                                         ((RadioButton)rgJnsKelamin.getChildAt(0)).setChecked(true);
                                     }
                                     else {
@@ -227,7 +230,7 @@ public class AddMahasiswaActivity extends AppCompatActivity {
                         }
 
                         @Override
-                        public void onFailure(Call<ReturnFirstMahasiswaResponseModel> call, Throwable t) {
+                        public void onFailure(Call<MahasiswaResponseModel> call, Throwable t) {
                             commonView.stopProgressBar();
                             commonView.popUp(t.getMessage());
                         }
@@ -250,5 +253,7 @@ public class AddMahasiswaActivity extends AppCompatActivity {
         cbBermainGitar.setChecked(false);
         cbMemasak.setChecked(false);
         cbBermainGame.setChecked(false);
+        spProdi.setSelection(0);
+        spAgama.setSelection(0);
     }
 }

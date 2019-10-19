@@ -1,22 +1,44 @@
-package com.rizal.utsmysql.model.request;
+package com.rizal.utsmysql.model.response;
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class MahasiswaRequestModel {
+public class MahasiswaModel {
+    @SerializedName("nbi")
+    @Expose
     private String nbi;
+
+    @SerializedName("nama")
+    @Expose
     private String nama;
+
+    @SerializedName("alamat")
+    @Expose
     private String alamat;
+
+    @SerializedName("tgl_lahir")
+    @Expose
     private String tgl_lahir;
+
+    @SerializedName("prodi")
+    @Expose
     private String prodi;
+
+    @SerializedName("jns_kelamin")
+    @Expose
     private String jns_kelamin;
+
+    @SerializedName("agama")
+    @Expose
     private String agama;
+
+    @SerializedName("hobi")
+    @Expose
     private List<String> hobi;
-    private String search;
 
-    public MahasiswaRequestModel() {
-    }
-
-    public MahasiswaRequestModel(String nbi, String nama, String alamat, String tgl_lahir, String prodi, String jns_kelamin, String agama, List<String> hobi) {
+    public MahasiswaModel(String nbi, String nama, String alamat, String tgl_lahir, String prodi, String jns_kelamin, String agama, List<String> hobi) {
         this.nbi = nbi;
         this.nama = nama;
         this.alamat = alamat;
@@ -91,17 +113,9 @@ public class MahasiswaRequestModel {
         this.hobi = hobi;
     }
 
-    public String getSearch() {
-        return search;
-    }
-
-    public void setSearch(String search) {
-        this.search = search;
-    }
-
     @Override
     public String toString() {
-        return "MahasiswaRequestModel{" +
+        return "MahasiswaModel{" +
                 "nbi='" + nbi + '\'' +
                 ", nama='" + nama + '\'' +
                 ", alamat='" + alamat + '\'' +
