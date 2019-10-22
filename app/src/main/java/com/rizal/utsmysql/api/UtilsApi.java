@@ -8,7 +8,7 @@ import android.net.NetworkRequest;
 import androidx.annotation.NonNull;
 
 public class UtilsApi {
-    public static String BASE_URL = "http://137ace8f.ngrok.io/";
+    public static String BASE_URL = "http://rizaldevtest.web.id/public/";
     private static boolean isConnected = false;
 
     public static BaseApiService getAPIService(String urlserver){
