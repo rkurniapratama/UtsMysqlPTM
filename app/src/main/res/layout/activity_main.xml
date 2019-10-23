@@ -47,7 +47,7 @@
                             android:hint="NBI/Nama"/>
                     </com.google.android.material.textfield.TextInputLayout>
 
-                    <Button
+                    <!--<Button
                         android:id="@+id/btnCari"
                         android:layout_weight="3.5"
                         android:layout_width="match_parent"
@@ -55,7 +55,7 @@
                         app:backgroundTint="@color/spiner_base_color"
                         android:textColor="#fff"
                         android:text="Cari"
-                        android:drawableLeft="@drawable/ic_search_white_24dp"/>
+                        android:drawableLeft="@drawable/ic_search_white_24dp"/>-->
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
         </LinearLayout>
