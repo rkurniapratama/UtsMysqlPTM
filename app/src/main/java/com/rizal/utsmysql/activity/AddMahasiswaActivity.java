@@ -2,6 +2,7 @@ package com.rizal.utsmysql.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -21,8 +23,13 @@ import com.rizal.utsmysql.helper.CommonView;
 import com.rizal.utsmysql.model.request.MahasiswaRequestModel;
 import com.rizal.utsmysql.model.response.MahasiswaResponseModel;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -38,6 +45,7 @@ public class AddMahasiswaActivity extends AppCompatActivity {
     private RadioButton checkedRadioButton;
     private CheckBox cbBermainBola, cbMembacaBuku, cbBermainGitar, cbMemasak, cbBermainGame;
     private Button btnSimpan, btnReset;
+    private SimpleDateFormat dateFormatter;
     private int insertOrUpdate = 0;
 
     @Override
@@ -62,8 +70,38 @@ public class AddMahasiswaActivity extends AppCompatActivity {
         cbBermainGame = (CheckBox) findViewById(R.id.cbBermainGame);
         btnSimpan = (Button) findViewById(R.id.btnSimpan);
         btnReset = (Button) findViewById(R.id.btnReset);
+        dateFormatter = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
 
         initStartActivity();
+
+        commonView.enableDisableEditText(false, etTglLahir);
+
+        etTglLahir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    Calendar newCalendar = Calendar.getInstance();
+                    Date dateParse;
+                    if(!etTglLahir.getText().toString().isEmpty()) {
+                        dateParse = dateFormatter.parse(etTglLahir.getText().toString());
+                        newCalendar.setTime(dateParse);
+                    }
+                    DatePickerDialog datePickerDialog = new DatePickerDialog(mContext, new DatePickerDialog.OnDateSetListener() {
+                        @Override
+                        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                            Calendar newDate = Calendar.getInstance();
+                            newDate.set(year, monthOfYear, dayOfMonth);
+                            etTglLahir.setText(dateFormatter.format(newDate.getTime()));
+                        }
+
+                    }, newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
+                    datePickerDialog.getDatePicker().setMaxDate(new Date().getTime());
+                    datePickerDialog.show();
+                } catch (ParseException e) {
+                    commonView.popUp(e.getMessage());
+                }
+            }
+        });
 
         btnSimpan.setOnClickListener(new View.OnClickListener() {
             @Override

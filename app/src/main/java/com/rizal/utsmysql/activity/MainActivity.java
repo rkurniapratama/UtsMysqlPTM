@@ -8,10 +8,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
 import android.os.Message;
 import android.text.Editable;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
@@ -45,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
     private FloatingActionButton fabTambah;
     private List<MahasiswaModel> dataMahasiswa;
     private Handler handlerAutoContainer;
-
     private static final int TRIGGER_AUTO_COMPLETE = 100;
     private static final long AUTO_COMPLETE_DELAY = 300;
 

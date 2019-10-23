@@ -79,7 +79,7 @@ public class RecycleViewAdapterMahasiswa extends RecyclerView.Adapter<RecycleVie
         holder.tvNama.setText(dataMahasiswa.get(position).getNama());
 
         TextDrawable drawable = TextDrawable.builder()
-                .buildRound(dataMahasiswa.get(position).getNama().substring(0,1), getColor());
+                .buildRound(dataMahasiswa.get(position).getNama().substring(0,1).toUpperCase(), getColor());
         holder.ivTextDrawable.setImageDrawable(drawable);
 
         holder.tvOptions.setOnClickListener(new View.OnClickListener() {
