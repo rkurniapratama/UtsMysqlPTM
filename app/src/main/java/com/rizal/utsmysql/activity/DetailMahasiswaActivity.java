@@ -103,56 +103,56 @@ public class DetailMahasiswaActivity extends AppCompatActivity {
     }
 
     private void sendGetDetailMahasiswa(MahasiswaRequestModel param) {
-//        if(UtilsApi.isNetworkAvailable(mContext)) {
-        commonView.startProgressBarNonCancelable("Mohon tunggu...");
-        mApiService.sendGetDetailMahasiswa(param)
-                .enqueue(new Callback<MahasiswaResponseModel>() {
-                    @Override
-                    public void onResponse(Call<MahasiswaResponseModel> call, Response<MahasiswaResponseModel> response) {
-                        commonView.stopProgressBar();
-                        if(response.isSuccessful()) {
-                            if(response.body().getStatus().equalsIgnoreCase("S")) {
-                                TextDrawable drawable = TextDrawable.builder()
-                                        .buildRound(response.body().getData().getNama().substring(0,1), getColor());
-                                ivTextDrawable.setImageDrawable(drawable);
-                                tvNbi.setText(response.body().getData().getNbi());
-                                tvNama.setText(response.body().getData().getNama());
-                                tvAlamat.setText(response.body().getData().getAlamat());
-                                tvTglLahir.setText(response.body().getData().getTgl_lahir());
-                                tvProdi.setText(response.body().getData().getProdi());
-                                tvJnsKelamin.setText(response.body().getData().getJns_kelamin());
-                                tvAgama.setText(response.body().getData().getAgama());
+        if(UtilsApi.isNetworkAvailable(mContext)) {
+            commonView.startProgressBarNonCancelable("Mohon tunggu...");
+            mApiService.sendGetDetailMahasiswa(param)
+                    .enqueue(new Callback<MahasiswaResponseModel>() {
+                        @Override
+                        public void onResponse(Call<MahasiswaResponseModel> call, Response<MahasiswaResponseModel> response) {
+                            commonView.stopProgressBar();
+                            if(response.isSuccessful()) {
+                                if(response.body().getStatus().equalsIgnoreCase("S")) {
+                                    TextDrawable drawable = TextDrawable.builder()
+                                            .buildRound(response.body().getData().getNama().substring(0,1), getColor());
+                                    ivTextDrawable.setImageDrawable(drawable);
+                                    tvNbi.setText(response.body().getData().getNbi());
+                                    tvNama.setText(response.body().getData().getNama());
+                                    tvAlamat.setText(response.body().getData().getAlamat());
+                                    tvTglLahir.setText(response.body().getData().getTgl_lahir());
+                                    tvProdi.setText(response.body().getData().getProdi());
+                                    tvJnsKelamin.setText(response.body().getData().getJns_kelamin());
+                                    tvAgama.setText(response.body().getData().getAgama());
 
-                                String hobiConcat = "";
-                                int i = 0;
-                                for(String item : response.body().getData().getHobi()) {
-                                    hobiConcat += item;
-                                    if(i < response.body().getData().getHobi().size() - 1) {
-                                        hobiConcat += ", ";
+                                    String hobiConcat = "";
+                                    int i = 0;
+                                    for(String item : response.body().getData().getHobi()) {
+                                        hobiConcat += item;
+                                        if(i < response.body().getData().getHobi().size() - 1) {
+                                            hobiConcat += ", ";
+                                        }
+                                        i++;
                                     }
-                                    i++;
+                                    tvHobi.setText(hobiConcat);
                                 }
-                                tvHobi.setText(hobiConcat);
+                                else {
+                                    commonView.popUp(response.body().getMessage());
+                                }
                             }
                             else {
-                                commonView.popUp(response.body().getMessage());
+                                commonView.popUp(response.message());
                             }
                         }
-                        else {
-                            commonView.popUp(response.message());
+
+                        @Override
+                        public void onFailure(Call<MahasiswaResponseModel> call, Throwable t) {
+                            commonView.stopProgressBar();
+                            commonView.popUp(t.getMessage());
                         }
-                    }
+                    });
 
-                    @Override
-                    public void onFailure(Call<MahasiswaResponseModel> call, Throwable t) {
-                        commonView.stopProgressBar();
-                        commonView.popUp(t.getMessage());
-                    }
-                });
-
-//        }
-//        else {
-//            commonView.popUp("Mohon cek koneksi internet anda");
-//        }
+        }
+        else {
+            commonView.popUp("Mohon cek koneksi internet anda");
+        }
     }
 }

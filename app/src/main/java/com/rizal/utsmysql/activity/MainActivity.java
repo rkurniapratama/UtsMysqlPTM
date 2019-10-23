@@ -79,31 +79,36 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void sendGetSearchMahasiswa(MahasiswaRequestModel param) {
-        commonView.startProgressBarNonCancelable("Mohon tunggu...");
-        mApiService.sendGetSearchMahasiswa(param)
-                .enqueue(new Callback<MahasiswaResponseModel>() {
-                    @Override
-                    public void onResponse(Call<MahasiswaResponseModel> call, Response<MahasiswaResponseModel> response) {
-                        commonView.stopProgressBar();
-                        if(response.isSuccessful()) {
-                            if(response.body().getStatus().equalsIgnoreCase("S")) {
-                                dataMahasiswa = response.body().getData_list();
-                                rvListMahasiswaAdapter.refreshAll(dataMahasiswa);
+        if(UtilsApi.isNetworkAvailable(mContext)) {
+            commonView.startProgressBarNonCancelable("Mohon tunggu...");
+            mApiService.sendGetSearchMahasiswa(param)
+                    .enqueue(new Callback<MahasiswaResponseModel>() {
+                        @Override
+                        public void onResponse(Call<MahasiswaResponseModel> call, Response<MahasiswaResponseModel> response) {
+                            commonView.stopProgressBar();
+                            if(response.isSuccessful()) {
+                                if(response.body().getStatus().equalsIgnoreCase("S")) {
+                                    dataMahasiswa = response.body().getData_list();
+                                    rvListMahasiswaAdapter.refreshAll(dataMahasiswa);
+                                }
+                                else {
+                                    commonView.popUp(response.body().getMessage());
+                                }
                             }
                             else {
-                                commonView.popUp(response.body().getMessage());
+                                commonView.popUp(response.message());
                             }
                         }
-                        else {
-                            commonView.popUp(response.message());
-                        }
-                    }
 
-                    @Override
-                    public void onFailure(Call<MahasiswaResponseModel> call, Throwable t) {
-                        commonView.stopProgressBar();
-                        commonView.popUp(t.getMessage());
-                    }
-                });
+                        @Override
+                        public void onFailure(Call<MahasiswaResponseModel> call, Throwable t) {
+                            commonView.stopProgressBar();
+                            commonView.popUp(t.getMessage());
+                        }
+                    });
+        }
+        else {
+            commonView.popUp("Mohon cek koneksi internet anda");
+        }
     }
 }
