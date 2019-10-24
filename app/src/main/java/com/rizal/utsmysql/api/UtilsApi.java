@@ -8,7 +8,7 @@ import android.net.NetworkInfo;
 import android.os.Build;
 
 public class UtilsApi {
-    public static String BASE_URL = "http://rizaldevtest.web.id/public/";
+    public static String BASE_URL = "https://rizaldevtest.web.id/";
 
     public static BaseApiService getAPIService(String urlserver){
         return RetrofitClient.getClient(urlserver, false, 0).create(BaseApiService.class);
