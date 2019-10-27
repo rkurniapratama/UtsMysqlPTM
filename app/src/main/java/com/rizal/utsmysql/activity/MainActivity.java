@@ -146,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
                     });
         }
         else {
-            commonView.popUp("Mohon cek koneksi internet anda");
+            commonView.popUp("Mohon cek koneksi jaringan anda");
         }
     }
 }

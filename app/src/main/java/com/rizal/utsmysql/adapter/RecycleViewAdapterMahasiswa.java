@@ -179,28 +179,33 @@ public class RecycleViewAdapterMahasiswa extends RecyclerView.Adapter<RecycleVie
     }
 
     private void sendDeleteMahasiswa(MahasiswaRequestModel param) {
-        commonView.startProgressBarNonCancelable("Mohon tunggu...");
-        mApiService.sendDeleteMahasiswa(param)
-                .enqueue(new Callback<MahasiswaResponseModel>() {
-                    @Override
-                    public void onResponse(Call<MahasiswaResponseModel> call, Response<MahasiswaResponseModel> response) {
-                        commonView.stopProgressBar();
-                        if(response.isSuccessful()) {
-                            dataMahasiswa.remove(getItemCount() - 1);
-                            commonView.popUp(response.body().getMessage());
-                            notifyDataSetChanged();
+        if(UtilsApi.isNetworkAvailable(mContext)) {
+            commonView.startProgressBarNonCancelable("Mohon tunggu...");
+            mApiService.sendDeleteMahasiswa(param)
+                    .enqueue(new Callback<MahasiswaResponseModel>() {
+                        @Override
+                        public void onResponse(Call<MahasiswaResponseModel> call, Response<MahasiswaResponseModel> response) {
+                            commonView.stopProgressBar();
+                            if(response.isSuccessful()) {
+                                dataMahasiswa.remove(getItemCount() - 1);
+                                commonView.popUp(response.body().getMessage());
+                                notifyDataSetChanged();
+                            }
+                            else {
+                                commonView.popUp(response.message());
+                            }
                         }
-                        else {
-                            commonView.popUp(response.message());
-                        }
-                    }
 
-                    @Override
-                    public void onFailure(Call<MahasiswaResponseModel> call, Throwable t) {
-                        commonView.stopProgressBar();
-                        commonView.popUp(t.getMessage());
-                    }
-                });
+                        @Override
+                        public void onFailure(Call<MahasiswaResponseModel> call, Throwable t) {
+                            commonView.stopProgressBar();
+                            commonView.popUp(t.getMessage());
+                        }
+                    });
+        }
+        else {
+            commonView.popUp("Mohon cek koneksi jaringan anda");
+        }
     }
 
     private static void setBottomMargin(View view, int bottomMargin) {

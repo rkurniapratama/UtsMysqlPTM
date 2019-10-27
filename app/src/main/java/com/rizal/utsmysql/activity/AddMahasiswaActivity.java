@@ -207,7 +207,7 @@ public class AddMahasiswaActivity extends AppCompatActivity {
                     });
         }
         else {
-            commonView.popUp("Mohon cek koneksi internet anda");
+            commonView.popUp("Mohon cek koneksi jaringan anda");
         }
     }
 
@@ -239,7 +239,7 @@ public class AddMahasiswaActivity extends AppCompatActivity {
                     });
         }
         else {
-            commonView.popUp("Mohon cek koneksi internet anda");
+            commonView.popUp("Mohon cek koneksi jaringan anda");
         }
     }
 
@@ -291,7 +291,7 @@ public class AddMahasiswaActivity extends AppCompatActivity {
                     });
         }
         else {
-            commonView.popUp("Mohon cek koneksi internet anda");
+            commonView.popUp("Mohon cek koneksi jaringan anda");
         }
     }
 
