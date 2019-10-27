@@ -32,20 +32,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:padding="10dp">
+                    android:padding="15dp">
 
-                    <com.google.android.material.textfield.TextInputLayout
+                    <EditText
+                        android:id="@+id/etCari"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1">
-
-                        <EditText
-                            android:id="@+id/etCari"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="text"
-                            android:hint="NBI/Nama"/>
-                    </com.google.android.material.textfield.TextInputLayout>
+                        android:inputType="text"
+                        android:hint="NBI/Nama"
+                        android:background="@null"
+                        android:drawableRight="@drawable/ic_search_black_24dp"/>
 
                     <!--<Button
                         android:id="@+id/btnCari"

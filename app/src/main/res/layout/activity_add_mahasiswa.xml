@@ -218,7 +218,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Simpan"
-                    app:backgroundTint="@color/spiner_base_color"
+                    app:backgroundTint="#00ADEF"
                     android:textColor="#fff"
                     android:layout_weight="1"
                     android:drawableLeft="@drawable/ic_save_white_24dp"/>
